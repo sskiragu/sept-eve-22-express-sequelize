@@ -1,32 +1,19 @@
 import express from 'express';
 
-//import the controller
+import { getAllUsers, getUserById, createUser,updateUserById, deleteUserById } from '../controllers/userController.js';
+
 const router = express.Router();
 
-const users = [
-    {"id": 1, "name": "Joe"},
-    {"id": 2, "name": "Jane"}
-];
 
 //define endpoints
-router.get('/users', (req, res) => {
-    res.status(200).json(users);
-});
+router.get('/users', getAllUsers);
 
-router.get('/users/:id', (req, res) => {
-    const id = req.params;
-});
+router.get('/users/:id', getUserById);
 
-router.post('/users', (req, res) => {
-    const user = req.body;
-});
+router.post('/users', createUser);
 
-router.patch('/users/:id', (req, res) => {
-    const id = req.params;
-});
+router.patch('/users/:id', updateUserById);
 
-router.delete('/users/:id', (req, res) => {
-    const id = req.params;
-});
+router.delete('/users/:id', deleteUserById);
 
 export default router;

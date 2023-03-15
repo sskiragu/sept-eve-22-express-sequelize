@@ -4,16 +4,18 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js';
 import db from './models/index.js';
 
+//creating an instance of express
+const app = express();
+
+app.use(express.json());
+
 dotenv.config();
 
 const sequelize = db.sequelize;
 
-//creating an instance of express
-const app = express();
-
 sequelize.sync()
 
-app.use(userRoutes);
+app.use("/api/v1",userRoutes);
 
 //define port and hostname
 const port = process.env.PORT || 5000;
