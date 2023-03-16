@@ -13,6 +13,9 @@ db.User = User(sequelize, Sequelize);
 import Role from './Role.js';
 db.Role = Role( sequelize, Sequelize );
 
+import Student from './Student.js';
+db.Student = Student(sequelize, Sequelize);
+
 //Create the relationship - User and Role
 //To create a One-To-One relationship, the hasOne and belongsTo associations are used together;
 // To create a One-To-Many relationship, the hasMany and belongsTo associations are used together;
@@ -28,6 +31,13 @@ db.Role.belongsToMany(db.User, {
     through: "user_roles",
     foreignKey: "user_id",
     otherKey: "role_id"
+  });
+
+  //On-To-One Relationship
+  db.User.hasOne(db.Student);
+
+  db.Student.belongsTo(db.User, {
+    foreignKey: "student_id"
   });
   
 export default db;
